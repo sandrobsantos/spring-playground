@@ -1,0 +1,37 @@
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.2.7.RELEASE',
+            'org.springframework.boot:spring-boot-starter-hateoas'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
+    }
+}
+
+jar {
+    baseName = 'hello-spring-boot'
+    version = '1.0-SNAPSHOT'
+}
+
+task execute(type:JavaExec) {
+    main = 'com.example.Application'
+    classpath = sourceSets.main.runtimeClasspath
+}
